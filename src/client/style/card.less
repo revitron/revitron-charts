@@ -1,0 +1,44 @@
+/**
+ * Revitron Charts
+ *
+ * Copyright (c) 2022 Marc Anton Dahmen <https://marcdahmen.de>
+ * MIT License
+ */
+
+.card {
+	position: relative;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 0.9rem 1rem;
+	background-color: var(--card-bg);
+	transition: background-color 0.2s;
+	user-select: none;
+	box-shadow: 0 0 0 2px var(--base-bg);
+
+	&--link {
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--card-bg-hover);
+		}
+	}
+
+	&__icon {
+		font-size: 1.5rem;
+		padding-bottom: 1rem;
+		color: var(--card-info-clr);
+	}
+
+	&__title {
+		font-size: 1rem;
+		padding-bottom: 1em;
+		flex-grow: 1;
+	}
+
+	&__info {
+		font-size: 0.75rem;
+		font-weight: 460;
+		color: var(--card-info-clr);
+	}
+}

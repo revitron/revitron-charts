@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"checkJs": false,
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"target": "es6",
+		"outDir": "public/dist",
+		"typeRoots": ["node_modules/@types"]
+	},
+	"exclude": ["node_modules", "public/dist"]
+}
