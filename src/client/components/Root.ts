@@ -5,7 +5,7 @@
  * MIT License
  */
 
-import { App, URLParams } from '../core';
+import { App, titleCase, URLParams } from '../core';
 import { CollectionView } from '../views/CollectionView';
 import { DashboardView } from '../views/DashboardView';
 
@@ -15,6 +15,7 @@ export class RootComponent extends HTMLElement {
 	}
 
 	connectedCallback(): void {
+		this.classList.add('container');
 		this.init();
 
 		window.addEventListener('popstate', this.renderView.bind(this));
@@ -32,17 +33,19 @@ export class RootComponent extends HTMLElement {
 		this.renderView();
 	}
 
-	private renderView(): void {
+	renderView(): void {
 		const search = new URLSearchParams(window.location.search);
 
 		if (search.has(URLParams.collection)) {
-			new CollectionView(this, {
-				collection: search.get(URLParams.collection),
-			});
+			const collection = search.get(URLParams.collection);
+
+			document.title = `${titleCase(collection)} — Revitron Charts`;
+			new CollectionView(this, { collection });
 
 			return;
 		}
 
+		document.title = `${App.settings.data.project_name} — Revitron Charts`;
 		new DashboardView(this);
 	}
 }
