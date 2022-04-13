@@ -6,14 +6,27 @@
  */
 
 :root {
-	--base-clr: #eff0f1;
-	--base-bg: #222326;
+	--base-clr: #35383b;
+	--base-bg: #ffffff;
+	--muted-clr: #b3b7bc;
 
 	--container-padding: 1.25rem;
+
+	--card-bg: #f6f6f7;
+	--card-bg-hover: #f8f8f9;
+	--card-bg-chart: #fafafb;
+	--card-info-clr: var(--muted-clr);
+	--card-grid-clr: #fcfcfd;
+}
+
+html.dark {
+	--base-clr: #eff0f1;
+	--base-bg: #222326;
+	--muted-clr: #7d838c;
 
 	--card-bg: #292b2e;
 	--card-bg-hover: #2b2d31;
 	--card-bg-chart: #2d2f33;
-	--card-info-clr: #7d838c;
+	--card-info-clr: var(--muted-clr);
 	--card-grid-clr: #323437;
 }

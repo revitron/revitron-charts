@@ -11,3 +11,4 @@ import './components/Card';
 import './components/Collection';
 import './components/Navbar';
 import './components/Root';
+import './components/ThemeToggle';

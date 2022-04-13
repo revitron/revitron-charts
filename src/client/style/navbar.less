@@ -6,17 +6,37 @@
  */
 
 .navbar {
-	display: flex;
 	box-sizing: border-box;
-	padding: var(--container-padding);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 var(--container-padding);
+	height: 4.75rem;
 	gap: 1rem;
 
 	&__icon {
 		width: 2.5rem;
 		height: 2.5rem;
+		color: var(--base-clr);
 
 		& svg {
 			max-width: 100%;
+		}
+	}
+
+	&__theme-toggle {
+		display: flex;
+		gap: 0.2rem;
+		padding: 0.3rem;
+		font-size: 0.8rem;
+		color: var(--muted-clr);
+		border: 1px solid var(--muted-clr);
+		border-radius: 2rem;
+		transition: color 0.2s, border 0.2s;
+		cursor: pointer;
+
+		&:hover {
+			color: var(--base-clr);
 		}
 	}
 }
