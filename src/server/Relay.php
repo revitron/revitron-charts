@@ -2,7 +2,7 @@
 
 namespace RevitronCharts;
 
-defined('RELAY') or exit('Direct access not permitted');
+defined('REVITRON_CHARTS') or exit('Direct access not permitted');
 
 /**
  * The Relay class serves as the main entry point and forwards a given route to
@@ -34,7 +34,7 @@ class Relay {
 			$prefix = 'RevitronCharts\\';
 
 			if (strpos($class, $prefix) === 0) {
-				$file = BASE_DIR . '/src/api/' . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
+				$file = BASE_DIR . '/src/server/' . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
 
 				if (file_exists($file)) {
 					require_once $file;

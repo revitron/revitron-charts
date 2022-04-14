@@ -2,7 +2,7 @@
 
 namespace RevitronCharts;
 
-defined('RELAY') or exit('Direct access not permitted');
+defined('REVITRON_CHARTS') or exit('Direct access not permitted');
 
 /**
  * The Request class handles the actual request to the Directus API.
@@ -19,15 +19,15 @@ class Request {
 	 * @return string the JSON formatted response
 	 */
 	public static function get(string $route) {
-		if (empty(getenv('API_KEY')) || empty(getenv('API_URL')) || empty($route)) {
+		if (empty(getenv('RC_API_KEY')) || empty(getenv('RC_API_URL')) || empty($route)) {
 			return json_encode(array('error' => 'invalid configuration!'));
 		}
 
-		$url = rtrim(getenv('API_URL'), '/') . '/' . ltrim($route, '/');
+		$url = rtrim(getenv('RC_API_URL'), '/') . '/' . ltrim($route, '/');
 
 		$headers = array(
 			'Accept: application/json',
-			'Authorization: Bearer ' . getenv('API_KEY'),
+			'Authorization: Bearer ' . getenv('RC_API_KEY'),
 		);
 
 		$options = array(

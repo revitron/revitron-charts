@@ -2,7 +2,7 @@
 
 namespace RevitronCharts;
 
-defined('RELAY') or exit('Direct access not permitted');
+defined('REVITRON_CHARTS') or exit('Direct access not permitted');
 
 /**
  * The Environment class handles merging environment variables

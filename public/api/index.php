@@ -2,9 +2,9 @@
 
 use RevitronCharts\Relay;
 
+define('REVITRON_CHARTS', true);
 define('BASE_DIR', dirname(dirname(__DIR__)));
-define('RELAY', true);
 
-require_once realpath(BASE_DIR . '/src/api/Relay.php');
+require_once realpath(BASE_DIR . '/src/server/Relay.php');
 
 new Relay();
