@@ -1,3 +1,14 @@
+<?php
+
+use RevitronCharts\Environment;
+
+define('REVITRON_CHARTS', true);
+define('BASE_DIR', dirname(__DIR__));
+require_once realpath(BASE_DIR . '/src/server/Environment.php');
+
+new Environment()
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +23,6 @@
 </head>
 <body>
 	<rc-navbar></rc-navbar>
-	<rc-root></rc-root>
+	<rc-root unit="<?php echo(getenv('RC_DISPLAY_UNIT')); ?>"></rc-root>
 </body>
 </html>
