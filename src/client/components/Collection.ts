@@ -7,11 +7,11 @@
 
 import {
 	lineChart,
-	KeyValueMap,
 	requestItems,
-	day,
 	create,
 	titleCase,
+	App,
+	prepareDataSets,
 } from '../core';
 
 export class CollectionComponent extends HTMLElement {
@@ -27,36 +27,22 @@ export class CollectionComponent extends HTMLElement {
 
 	private async init(collection: string): Promise<void> {
 		const items = await requestItems(collection);
-		const { fieldDataSets, fields } = this.prepareDataSets(items);
+		const { fieldDataSets, fields } = prepareDataSets(items);
 		const title = create('h1', [], {}, this);
 		const grid = create('div', ['grid', 'grid--large'], {}, this);
+		const back = create('a', [], { href: '' }, title);
 
-		title.textContent = titleCase(collection);
+		back.innerHTML = '←';
+		back.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			App.root.update();
+		});
+
+		create('span', [], {}, title).textContent = titleCase(collection);
 
 		fields.forEach((field: string) => {
 			lineChart(grid, field, fieldDataSets[field]);
 		});
-	}
-
-	private prepareDataSets(items: KeyValueMap[]): KeyValueMap {
-		const last = items[items.length - 1];
-		const fields = Object.keys(last).filter((field) => {
-			return !field.match(/(id|timestamp)/);
-		});
-
-		const fieldDataSets: KeyValueMap = {};
-
-		fields.forEach((field) => {
-			const data: KeyValueMap = {};
-
-			items.forEach((item: KeyValueMap) => {
-				data[day(item.timestamp)] = item[field];
-			});
-
-			fieldDataSets[field] = data;
-		});
-
-		return { fieldDataSets, fields };
 	}
 }
 

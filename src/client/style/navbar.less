@@ -13,10 +13,24 @@
 	padding: 0 var(--container-padding);
 	height: 4.75rem;
 	gap: 1rem;
+	border-bottom: 1px solid var(--card-bg);
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		color: var(--muted-clr);
+
+		& * {
+			user-select: none;
+		}
+	}
 
 	&__icon {
-		width: 2.5rem;
-		height: 2.5rem;
+		width: 2.3rem;
+		height: 2.3rem;
+		font-size: 2.3rem;
+		line-height: 2.3rem;
 		color: var(--base-clr);
 
 		& svg {

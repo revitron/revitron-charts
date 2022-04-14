@@ -36,16 +36,18 @@ export class RootComponent extends HTMLElement {
 	renderView(): void {
 		const search = new URLSearchParams(window.location.search);
 
-		if (search.has(URLParams.collection)) {
+		if (search.get(URLParams.collection)) {
 			const collection = search.get(URLParams.collection);
 
-			document.title = `${titleCase(collection)} — Revitron Charts`;
+			document.title = `${titleCase(collection)} — ${
+				App.settings.data.project_name
+			}`;
 			new CollectionView(this, { collection });
 
 			return;
 		}
 
-		document.title = `${App.settings.data.project_name} — Revitron Charts`;
+		document.title = `${App.settings.data.project_name}`;
 		new DashboardView(this);
 	}
 }

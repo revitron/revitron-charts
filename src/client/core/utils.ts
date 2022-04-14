@@ -42,9 +42,39 @@ const htmlSpecialChars = (value: string): string => {
 	});
 };
 
+export const svg = (path: string | string[], viewBox: string = '0 0 16 16') => {
+	let content: string;
+
+	if (path instanceof Array) {
+		const pathArray: string[] = [];
+
+		path.forEach((p) => {
+			pathArray.push(`<path d="${p}" />`);
+		});
+
+		content = pathArray.join('');
+	} else {
+		content = `<path d="${path}" />`;
+	}
+
+	return html`
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			x="0px"
+			y="0px"
+			width="1em"
+			height="1em"
+			fill="currentColor"
+			viewBox="${viewBox}"
+		>
+			${content}
+		</svg>
+	`;
+};
+
 export const titleCase = (str: string): string => {
 	return str
-		.replace('_value', '')
+		.replace(/^(are|len|vol|num)__/, '')
 		.replace(/(?!^)([A-Z]+)/g, ' $1')
 		.replace(/_/g, ' ')
 		.split(' ')
@@ -52,15 +82,17 @@ export const titleCase = (str: string): string => {
 		.join(' ');
 };
 
-export const mb = (bytes: number): number => {
-	return Math.round(bytes / 1024 / 1024);
+export const mb = (bytes: number): string => {
+	return Math.round(bytes / 1024 / 1024)
+		.toString()
+		.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 };
 
 export const day = (timestamp: string) => {
 	const options: Intl.DateTimeFormatOptions = {
 		weekday: 'short',
 		year: '2-digit',
-		month: 'numeric',
+		month: 'short',
 		day: 'numeric',
 	};
 
