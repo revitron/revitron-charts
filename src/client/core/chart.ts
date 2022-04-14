@@ -213,27 +213,32 @@ export const prepareDataSets = (items: KeyValueMap[]): KeyValueMap => {
 const convertUnit = (value: number, field: string): number => {
 	const prefixMatch = field.match(/^[a-z]{3}/);
 	const prefix = prefixMatch[0];
-	let converted;
+	let converted = value;
 
-	switch (prefix) {
-		case 'len':
-			converted = value * 0.3048;
-			break;
+	if (App.displayUnit == 'meter') {
+		switch (prefix) {
+			case 'len':
+				converted = value * 0.3048;
+				break;
 
-		case 'are':
-			converted = value * 0.092903;
-			break;
+			case 'are':
+				converted = value * 0.092903;
+				break;
 
-		case 'vol':
-			converted = value * 0.0283168;
-			break;
+			case 'vol':
+				converted = value * 0.0283168;
+				break;
 
-		case 'mod':
-			converted = value / 1024 / 1024;
-			break;
+			case 'mod':
+				converted = value / 1024 / 1024;
+				break;
+		}
 
-		default:
-			converted = value;
+		return converted;
+	}
+
+	if (prefix == 'mod') {
+		converted = value / 1024 / 1024;
 	}
 
 	return converted;
