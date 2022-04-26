@@ -22,8 +22,7 @@ class Relay {
 
 		header('Content-Type: application/json; charset=utf-8');
 
-		$route = array_key_first($_GET);
-		echo Request::get($route);
+		echo Request::get($_SERVER['QUERY_STRING']);
 	}
 
 	/**
