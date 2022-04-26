@@ -20,6 +20,7 @@ export class NavbarComponent extends HTMLElement {
 		this.classList.add('navbar');
 		const home = `${window.location.origin}${window.location.pathname}`;
 		const left = create('div', ['navbar__nav'], {}, this);
+		const filter = create('rc-filter', ['navbar__filter'], {}, this);
 		const right = create('div', ['navbar__nav'], {}, this);
 
 		create('a', ['navbar__icon'], { href: home }, left).innerHTML = svg(

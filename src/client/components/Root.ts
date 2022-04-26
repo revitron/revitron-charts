@@ -5,7 +5,7 @@
  * MIT License
  */
 
-import { App, titleCase, URLParams } from '../core';
+import { App, query, titleCase, URLParams } from '../core';
 import { CollectionView } from '../views/CollectionView';
 import { DashboardView } from '../views/DashboardView';
 
@@ -23,6 +23,8 @@ export class RootComponent extends HTMLElement {
 
 	update(collection: string = ''): void {
 		history.pushState(null, null, `?collection=${collection}`);
+
+		(query('rc-filter input') as HTMLInputElement).value = '';
 
 		this.renderView();
 	}

@@ -12,7 +12,7 @@
 	align-items: center;
 	padding: 0 var(--container-padding);
 	height: 4.75rem;
-	gap: 1rem;
+	gap: 2.5rem;
 	border-bottom: 1px solid var(--card-bg);
 
 	&__nav {
@@ -42,15 +42,38 @@
 		display: flex;
 		gap: 0.2rem;
 		padding: 0.3rem;
-		font-size: 0.8rem;
+		font-size: 1.2rem;
 		color: var(--muted-clr);
-		border: 1px solid var(--muted-clr);
-		border-radius: 2rem;
 		transition: color 0.2s, border 0.2s;
 		cursor: pointer;
 
 		&:hover {
 			color: var(--base-clr);
+		}
+	}
+
+	&__filter {
+		flex-grow: 1;
+
+		& input {
+			box-sizing: border-box;
+			padding: 0.5rem 1.5rem;
+			width: 100%;
+			line-height: inherit;
+			font-size: inherit;
+			font-family: inherit;
+			background-color: var(--card-bg);
+			border: 2px solid var(--card-bg-chart);
+			border-radius: 2rem;
+			outline: 0 !important;
+
+			&::placeholder {
+				color: var(--muted-clr);
+			}
+
+			&:focus {
+				border-color: var(--card-grid-clr) !important;
+			}
 		}
 	}
 }

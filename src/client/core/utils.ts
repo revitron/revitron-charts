@@ -42,6 +42,20 @@ const htmlSpecialChars = (value: string): string => {
 	});
 };
 
+export const query = (
+	selector: string,
+	element: Document | HTMLElement = document
+): HTMLElement => {
+	return element.querySelector(selector);
+};
+
+export const queryAll = (
+	selector: string,
+	element: HTMLElement | Document = document
+): HTMLElement[] => {
+	return Array.from(element.querySelectorAll(selector));
+};
+
 export const svg = (path: string | string[], viewBox: string = '0 0 16 16') => {
 	let content: string;
 

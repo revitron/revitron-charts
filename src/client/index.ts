@@ -9,6 +9,7 @@ import './style/style.less';
 
 import './components/Card';
 import './components/Collection';
+import './components/Filter';
 import './components/Navbar';
 import './components/Root';
 import './components/ThemeToggle';
