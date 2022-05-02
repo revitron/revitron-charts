@@ -25,7 +25,7 @@ export const requestCollections = async () => {
 	});
 
 	return data.filter((item: { collection: string }) => {
-		return !item.collection?.match(/^directus_/i);
+		return item.collection?.match(/^analyze__/i);
 	});
 };
 

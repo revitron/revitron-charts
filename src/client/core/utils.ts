@@ -88,7 +88,7 @@ export const svg = (path: string | string[], viewBox: string = '0 0 16 16') => {
 
 export const titleCase = (str: string): string => {
 	return str
-		.replace(/^(are|len|vol|num)__/, '')
+		.replace(/^([a-z]+)__/, '')
 		.replace(/(?!^)([A-Z]+)/g, ' $1')
 		.replace(/_/g, ' ')
 		.split(' ')
