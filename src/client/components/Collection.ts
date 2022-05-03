@@ -65,13 +65,15 @@ export class CollectionComponent extends HTMLElement {
 			});
 		};
 
-		const history = await request(`/items/${historyCollection}`);
+		const history = await request(
+			`/items/${historyCollection}?limit=500&sort=-start_time`
+		);
 
 		const transactionsByUser = await request(
-			`/items/${historyCollection}?aggregate[sum]=unique_transactions&groupBy[]=user`
+			`/items/${historyCollection}?aggregate[sum]=unique_transactions&groupBy[]=user&limit=500`
 		);
 		const syncsByUser = await request(
-			`/items/${historyCollection}?aggregate[count]=id&groupBy[]=user`
+			`/items/${historyCollection}?aggregate[count]=id&groupBy[]=user&limit=500`
 		);
 
 		if (history.data) {
@@ -86,7 +88,7 @@ export class CollectionComponent extends HTMLElement {
 			});
 
 			const syncTimeSorted = syncTime.sort((a, b) => {
-				return a.id < b.id ? 1 : -1;
+				return a.id > b.id ? 1 : -1;
 			});
 
 			barChart(grid, 'Sync Times (min)', syncTimeSorted, true);

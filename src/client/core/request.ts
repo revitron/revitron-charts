@@ -30,9 +30,11 @@ export const requestCollections = async () => {
 };
 
 export const requestItems = async (collection: string) => {
-	const items = (await request(`/items/${collection}?sort=timestamp`)) as {
+	const items = (await request(
+		`/items/${collection}?sort=-timestamp&limit=250`
+	)) as {
 		data: KeyValueMap[];
 	};
 
-	return items.data;
+	return items.data.reverse();
 };

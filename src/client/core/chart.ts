@@ -172,14 +172,15 @@ export const barChart = (
 	fullWidth: boolean = false
 ): void => {
 	const cls = ['card'];
+	let height = '50vh';
 
 	if (fullWidth) {
 		cls.push('grid__item-span-2');
+		height = '25vh';
 	}
 
 	const wrapper = create('div', cls, {}, container);
 	const style = getComputedStyle(document.body);
-	const borderColor = style.getPropertyValue('--card-info-clr');
 	const backgroundColor = style.getPropertyValue('--card-info-clr');
 
 	create('div', ['card__title'], {}, wrapper).innerHTML = chartTitle(title);
@@ -187,7 +188,7 @@ export const barChart = (
 	const canvas = create(
 		'canvas',
 		['chart__canvas'],
-		{ width: '100%', height: '50vh' },
+		{ width: '100%', height },
 		wrapper
 	);
 
@@ -198,8 +199,6 @@ export const barChart = (
 				{
 					data,
 					backgroundColor,
-					//borderColor,
-					//borderWidth: 2,
 				},
 			],
 		},
