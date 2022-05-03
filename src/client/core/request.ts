@@ -7,7 +7,7 @@
 
 import { KeyValueMap } from './types';
 
-export const request = async (route: string): Promise<object> => {
+export const request = async (route: string): Promise<KeyValueMap> => {
 	const url = `api/?${route}`;
 	const response = await fetch(url);
 	const data = await response.json();
@@ -25,7 +25,7 @@ export const requestCollections = async () => {
 	});
 
 	return data.filter((item: { collection: string }) => {
-		return item.collection?.match(/^analyze__/i);
+		return item.collection?.match(/^snapshots__/i);
 	});
 };
 

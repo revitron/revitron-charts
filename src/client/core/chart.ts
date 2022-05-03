@@ -165,6 +165,48 @@ const chartTitle = (field: string): string => {
 	`;
 };
 
+export const barChart = (
+	container: HTMLElement,
+	title: string,
+	data: KeyValueMap[],
+	fullWidth: boolean = false
+): void => {
+	const cls = ['card'];
+
+	if (fullWidth) {
+		cls.push('grid__item-span-2');
+	}
+
+	const wrapper = create('div', cls, {}, container);
+	const style = getComputedStyle(document.body);
+	const borderColor = style.getPropertyValue('--card-info-clr');
+	const backgroundColor = style.getPropertyValue('--card-info-clr');
+
+	create('div', ['card__title'], {}, wrapper).innerHTML = chartTitle(title);
+
+	const canvas = create(
+		'canvas',
+		['chart__canvas'],
+		{ width: '100%', height: '50vh' },
+		wrapper
+	);
+
+	new Chart(canvas, {
+		type: 'bar',
+		data: {
+			datasets: [
+				{
+					data,
+					backgroundColor,
+					//borderColor,
+					//borderWidth: 2,
+				},
+			],
+		},
+		options: options(),
+	});
+};
+
 export const lineChart = (
 	container: HTMLElement,
 	field: string,
