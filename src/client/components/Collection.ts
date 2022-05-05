@@ -47,7 +47,12 @@ export class CollectionComponent extends HTMLElement {
 
 		const history = await this.history(collection);
 
-		['syncTimes', 'syncsByUser', 'transactionsByUser'].forEach((item) => {
+		[
+			'syncTimes',
+			'syncCountByUser',
+			'syncTimeSumByUser',
+			'transactionsByUser',
+		].forEach((item) => {
 			if (history[item]) {
 				grid.appendChild(history[item]);
 			}
@@ -83,7 +88,12 @@ export class CollectionComponent extends HTMLElement {
 		const transactionsByUser = await request(
 			`/items/${historyCollection}?aggregate[sum]=unique_transactions&groupBy[]=user&limit=500`
 		);
-		const syncsByUser = await request(
+
+		const syncTimeSumByUser = await request(
+			`/items/${historyCollection}?aggregate[sum]=sync_time&groupBy[]=user&limit=500`
+		);
+
+		const syncCountByUser = await request(
 			`/items/${historyCollection}?aggregate[count]=id&groupBy[]=user&limit=500`
 		);
 
@@ -129,30 +139,55 @@ export class CollectionComponent extends HTMLElement {
 				return a.id > b.id ? 1 : -1;
 			});
 
+			const avgSyncTime = await request(
+				`/items/${historyCollection}?aggregate[avg]=sync_time`
+			);
+
 			elements.syncTimes = barChart(
 				null,
-				'Sync Times (min)',
+				`Sync Times &mdash; Average ${Math.round(
+					avgSyncTime?.data[0].avg?.sync_time
+				)} min.`,
 				syncTimeSorted,
 				true
 			);
 		}
 
-		if (syncsByUser.data) {
-			const syncsByUserData: KeyValueMap[] = [];
+		if (syncCountByUser.data) {
+			const syncCountByUserData: KeyValueMap[] = [];
 
-			syncsByUser.data.forEach((item: KeyValueMap) => {
-				syncsByUserData.push({
+			syncCountByUser.data.forEach((item: KeyValueMap) => {
+				syncCountByUserData.push({
 					x: item.user,
 					y: parseInt(item.count.id),
 				});
 			});
 
-			const syncsByUserDataSorted = sortY(syncsByUserData);
+			const syncCountByUserDataSorted = sortY(syncCountByUserData);
 
-			elements.syncsByUser = barChart(
+			elements.syncCountByUser = barChart(
 				null,
-				'Syncs by User',
-				syncsByUserDataSorted
+				'Number of Syncs by User',
+				syncCountByUserDataSorted
+			);
+		}
+
+		if (syncTimeSumByUser.data) {
+			const syncTimeSumByUserData: KeyValueMap[] = [];
+
+			syncTimeSumByUser.data.forEach((item: KeyValueMap) => {
+				syncTimeSumByUserData.push({
+					x: item.user,
+					y: parseInt(item.sum.sync_time),
+				});
+			});
+
+			const syncTimeSumByUserDataSorted = sortY(syncTimeSumByUserData);
+
+			elements.syncTimeSumByUser = barChart(
+				null,
+				'Summarized Sync Time by User',
+				syncTimeSumByUserDataSorted
 			);
 		}
 
