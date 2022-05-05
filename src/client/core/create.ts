@@ -34,11 +34,13 @@ export const create = (
 export const table = (data: KeyValueMap[]): HTMLElement => {
 	const table = create('table', [], {});
 
-	const header = create('tr', [], {}, table);
+	try {
+		const header = create('tr', [], {}, table);
 
-	Object.keys(data[0]).forEach((key) => {
-		create('th', [], {}, header).textContent = titleCase(key);
-	});
+		Object.keys(data[0]).forEach((key) => {
+			create('th', [], {}, header).textContent = titleCase(key);
+		});
+	} catch {}
 
 	data.forEach((row) => {
 		const tr = create('tr', [], {}, table);
