@@ -170,7 +170,7 @@ export const barChart = (
 	title: string,
 	data: KeyValueMap[],
 	fullWidth: boolean = false
-): void => {
+): HTMLElement => {
 	const cls = ['card'];
 	let height = '50vh';
 
@@ -204,6 +204,8 @@ export const barChart = (
 		},
 		options: options(),
 	});
+
+	return wrapper;
 };
 
 export const lineChart = (

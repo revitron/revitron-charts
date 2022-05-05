@@ -5,6 +5,9 @@
  * MIT License
  */
 
+import { KeyValueMap } from './types';
+import { titleCase } from './utils';
+
 export const create = (
 	tag: string,
 	classes: string[] = [],
@@ -26,4 +29,24 @@ export const create = (
 	}
 
 	return element;
+};
+
+export const table = (data: KeyValueMap[]): HTMLElement => {
+	const table = create('table', [], {});
+
+	const header = create('tr', [], {}, table);
+
+	Object.keys(data[0]).forEach((key) => {
+		create('th', [], {}, header).textContent = titleCase(key);
+	});
+
+	data.forEach((row) => {
+		const tr = create('tr', [], {}, table);
+
+		Object.values(row).forEach((value) => {
+			create('td', [], {}, tr).textContent = value;
+		});
+	});
+
+	return table;
 };

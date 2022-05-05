@@ -69,3 +69,27 @@ h1 {
 		color: inherit;
 	}
 }
+
+table {
+	min-width: 100%;
+
+	tr {
+		transition: background-color 0.2s;
+
+		&:not(:first-child):hover {
+			background-color: var(--card-bg-hover);
+		}
+	}
+
+	& th,
+	& td {
+		font-size: 0.7em;
+		text-align: left;
+		color: var(--muted-clr);
+	}
+
+	& th {
+		font-weight: 640;
+		border-bottom: 1px solid var(--card-grid-clr);
+	}
+}
