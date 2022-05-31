@@ -44,7 +44,7 @@ docker build -t revitron/charts .
 After successfully building the image, we can now run it and pass the required environment variables:
 
 ```bash
-docker run -d 
+docker run -d \
            -p 80:80 \
            -e RC_API_KEY="XXX" \
            -e RC_API_URL="https://url/to/directus" \
