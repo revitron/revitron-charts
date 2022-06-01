@@ -98,7 +98,7 @@ export class CollectionComponent extends HTMLElement {
 		);
 
 		if (history.data) {
-			elements.table = create('div', ['card', 'grid__item-span-2'], {});
+			elements.table = create('div', ['card', 'grid__item-span-row'], {});
 			elements.table.innerHTML = html`
 				<div class="card__title">
 					<svg

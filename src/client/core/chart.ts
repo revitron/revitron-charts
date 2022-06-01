@@ -175,7 +175,7 @@ export const barChart = (
 	let height = '50vh';
 
 	if (fullWidth) {
-		cls.push('grid__item-span-2');
+		cls.push('grid__item-span-row');
 		height = '25vh';
 	}
 
