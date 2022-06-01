@@ -2,12 +2,15 @@
 
 The Revitron Charts app is a frontend for model analytics data that are collected using the `revitron analyze` command in combination with a Directus instance as the storage. It basically automatically grabs all collections from a Directus instance and auto-generates the respective charts.
 
+![](images/dashboard.png)
+![](images/charts.png)
+
 ## Configuration
 
 Revitron Charts requires a couple of specific environment variables to be defined in order to connect to a running Directus instance and work properly.
 
 | Name | Description |
-| --- | --- |
+| :--- | :--- |
 | RC_API_KEY | The API key that is used to athenticate requests to the Directus endpoints |
 | RC_API_URL | The base URL of the Directus instance |
 | RC_DISPLAY_UNIT | The base unit for displaying numeric values &mdash; `feet` or `meter` (defaults to `feet`) |
