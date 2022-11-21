@@ -6,29 +6,32 @@
  */
 
 :root {
-	--base-clr: #35383b;
+	--sat: 9%;
+
+	--base-clr: hsl(215, var(--sat), 8%);
 	--base-bg: #ffffff;
-	--muted-clr: #b3b7bc;
+	--muted-clr: hsl(215, var(--sat), 34%);
 
 	--container-padding: 1.25rem;
 
-	--card-bg: #f6f6f7;
-	--card-bg-hover: #f8f8f9;
-	--card-bg-chart: #fafafb;
+	--card-bg: hsl(215, var(--sat), 95%);
+	--card-bg-hover: hsl(215, var(--sat), 93%);
+	--card-bg-chart: hsl(215, var(--sat), 91%);
 	--card-info-clr: var(--muted-clr);
-	--card-grid-clr: #fcfcfd;
+	--card-grid-clr: hsl(215, var(--sat), 92%);
 }
 
 html.dark {
 	color-scheme: dark;
+	--sat: 8%;
 
-	--base-clr: #eff0f1;
-	--base-bg: #222326;
-	--muted-clr: #7d838c;
+	--base-clr: hsl(215, var(--sat), 94%);
+	--base-bg: hsl(215, var(--sat), 6%);
+	--muted-clr: hsl(215, var(--sat), 57%);
 
-	--card-bg: #292b2e;
-	--card-bg-hover: #2b2d31;
-	--card-bg-chart: #2d2f33;
+	--card-bg: hsl(215, var(--sat), 11%);
+	--card-bg-hover: hsl(215, var(--sat), 14%);
+	--card-bg-chart: hsl(215, var(--sat), 17%);
 	--card-info-clr: var(--muted-clr);
-	--card-grid-clr: #323437;
+	--card-grid-clr: hsl(215, var(--sat), 16%);
 }
